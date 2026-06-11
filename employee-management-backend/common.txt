@@ -1,0 +1,127 @@
+CREATE TABLE EMPLOYEE
+(
+    EMPLOYEE_ID NUMBER PRIMARY KEY,
+    EMPLOYEE_NAME VARCHAR2(100),
+    EMAIL VARCHAR2(100),
+    MOBILE_NUMBER VARCHAR2(20),
+    DEPARTMENT VARCHAR2(50),
+    DESIGNATION VARCHAR2(50),
+    SALARY NUMBER(12,2),
+    DATE_OF_JOINING DATE,
+    STATUS VARCHAR2(20)
+);
+
+INSERT INTO EMPLOYEE VALUES
+(
+1,
+'John Smith',
+'john@test.com',
+'9876543210',
+'IT',
+'Developer',
+75000,
+SYSDATE,
+'Active'
+);
+
+INSERT INTO EMPLOYEE VALUES
+(
+2,
+'Sarah Wilson',
+'sarah@test.com',
+'9876543211',
+'HR',
+'Manager',
+85000,
+SYSDATE,
+'Active'
+);
+
+COMMIT;
+
+
+
+
+mkdir employee-management-backend
+
+cd employee-management-backend
+
+npm install
+
+npm run dev
+
+
+
+GET    /api/employees
+
+GET    /api/employees/:id
+
+POST   /api/employees
+
+PUT    /api/employees/:id
+
+DELETE /api/employees/:id
+
+GET    /api/employees/search?name=John
+
+GET    /api/employees/department/IT
+
+
+
+node testConnection.js
+
+[ [ 'DATABASE CONNECTED' ] ]
+
+
+
+
+Oracle Client Requirement
+
+Before running the backend, verify:
+
+node -e "console.log(require('oracledb').versionString)"
+
+If you get errors like:
+
+DPI-1047: Cannot locate a 64-bit Oracle Client library
+
+then install Oracle Instant Client and configure:
+
+PATH=C:\oracle\instantclient_23_8;%PATH%
+
+(or corresponding Linux path).
+
+One More Recommendation
+
+Instead of manually entering EMPLOYEE_ID, use a sequence:
+
+CREATE SEQUENCE EMPLOYEE_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+and in the repository:
+
+INSERT INTO EMPLOYEE(
+    EMPLOYEE_ID,
+    EMPLOYEE_NAME,
+    EMAIL,
+    MOBILE_NUMBER,
+    DEPARTMENT,
+    DESIGNATION,
+    SALARY,
+    DATE_OF_JOINING,
+    STATUS
+)
+VALUES(
+    EMPLOYEE_SEQ.NEXTVAL,
+    :employeeName,
+    :email,
+    :mobileNumber,
+    :department,
+    :designation,
+    :salary,
+    TO_DATE(:dateOfJoining,'YYYY-MM-DD'),
+    :status
+)
+
+This avoids primary-key conflicts when multiple users add employees simultaneou

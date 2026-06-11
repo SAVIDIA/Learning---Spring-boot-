@@ -1,0 +1,26 @@
+Run Frontend
+npx create-react-app employee-management-ui
+
+cd employee-management-ui
+
+npm install axios bootstrap react-router-dom
+
+npm start
+Backend
+cd employee-management-backend
+
+npm run dev
+Frontend
+cd employee-management-ui
+
+npm start
+
+Open:
+
+http://localhost:3000
+
+The UI will connect to:
+
+http://localhost:5000/api/employees
+
+and provide Employee CRUD, Search, View, Edit, Delete functionality using your Oracle-backed Node.js REST APIs.
