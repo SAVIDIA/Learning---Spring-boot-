@@ -7,7 +7,7 @@ const oracledb = require("oracledb");
     connection = await oracledb.getConnection({
       user: "dfcudev",
       password: "YOUR_PASSWORD",
-      connectString: "192.168.132.71:1521/orclpdb"
+      connectString: ""
     });
 
     const result = await connection.execute(
